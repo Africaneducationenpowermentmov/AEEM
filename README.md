@@ -63,9 +63,6 @@ We work at the national and regional levels to advocate for policies and reforms
 - **Volunteer** and contribute your skills.
 - **Share our mission** with friends and family.
 
-![Get Involved](https://example.com/get-involved.jpg)
-
----
 
 ## Contact Us
 
