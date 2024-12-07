@@ -69,11 +69,7 @@ We work at the national and regional levels to advocate for policies and reforms
 
 ## Contact Us
 
-For more information or to get involved, please reach out:
-
-- **Email**: info@aeem.org
-- **Phone**: +123-456-7890
-- **Website**: [www.aeem.org](http://www.aeem.org)
+For more information or to get involved, please reach out.
 
 ---
 
