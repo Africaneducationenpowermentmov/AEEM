@@ -60,7 +60,9 @@ body {
 
 /* Fonts and General Reset */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap');
-
+html {
+  scroll-behavior: smooth;
+}
 body, html {
   margin: 0;
   padding: 0;
@@ -68,6 +70,8 @@ body, html {
   background: #f9f9f9;
   line-height: 1.6;
   scroll-behavior: smooth;
+  width: 100%;
+  overflow: none;
 }
 
 *, *::before, *::after {
