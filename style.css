@@ -1,3 +1,4 @@
+
 /* Import Fonts and Icons */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
@@ -10,6 +11,7 @@
   --text-color: #333;
   --light-text: #fff;
   --font-primary: 'Montserrat', sans-serif;
+  --focus-outline: 2px dashed var(--secondary-color);
 }
 
 /* Global Reset */
@@ -25,6 +27,27 @@ body {
   color: var(--text-color);
   background: var(--background-color);
   scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+/* Accessibility: Focus States */
+a:focus,
+button:focus {
+  outline: var(--focus-outline);
+  outline-offset: 3px;
+}
+
+/* Reduce Motion for Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 /* Header */
@@ -44,7 +67,6 @@ header .brand-logo a {
   color: var(--light-text);
   font-size: 1.8rem;
   font-weight: 700;
-  text-decoration: none;
 }
 
 header nav ul {
@@ -55,8 +77,6 @@ header nav ul {
 
 header nav ul li a {
   color: var(--light-text);
-  text-decoration: none;
-  font-weight: 400;
   padding: 5px 10px;
   border-radius: 5px;
   transition: background 0.3s ease;
@@ -65,6 +85,57 @@ header nav ul li a {
 header nav ul li a:hover {
   background: var(--secondary-color);
   color: var(--text-color);
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.hamburger-menu span {
+  width: 25px;
+  height: 3px;
+  background: var(--light-text);
+  border-radius: 5px;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.mega-nav {
+  display: flex;
+}
+
+.mega-nav.mobile {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--primary-color);
+  padding: 20px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.mega-nav.mobile.active {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .hamburger-menu {
+    display: flex;
+  }
+
+  .mega-nav {
+    display: none;
+  }
+
+  .mega-nav.mobile {
+    display: none;
+  }
+
+  .mega-nav.mobile.active {
+    display: flex;
+  }
 }
 
 /* Hero Section */
@@ -79,11 +150,12 @@ header nav ul li a:hover {
 .hero h1 {
   font-size: 3rem;
   font-weight: 700;
+  margin-bottom: 20px;
 }
 
 .hero p {
   font-size: 1.2rem;
-  margin: 20px 0;
+  margin-bottom: 20px;
 }
 
 .hero .btn-primary {
@@ -91,158 +163,13 @@ header nav ul li a:hover {
   color: var(--text-color);
   padding: 10px 20px;
   border-radius: 5px;
-  text-decoration: none;
   font-weight: 700;
-  transition: background 0.3s ease;
+  transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .hero .btn-primary:hover {
   background: #e6b800;
-}
-
-/* Sections */
-.section {
-  padding: 60px 20px;
-}
-
-.section h2 {
-  font-size: 2.5rem;
-  text-align: center;
-  margin-bottom: 20px;
-  color: var(--primary-color);
-}
-
-.section p {
-  font-size: 1.1rem;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-/* Cards */
-.card {
-  background: var(--light-text);
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-}
-
-/* Buttons */
-button, .btn-primary {
-  display: inline-block;
-  font-size: 1rem;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btn-primary {
-  background: var(--primary-color);
-  color: var(--light-text);
-  border: none;
-}
-
-.btn-primary:hover {
-  background: var(--secondary-color);
-  color: var(--text-color);
-}
-
-/* Footer */
-footer {
-  background: var(--primary-color);
-  color: var(--light-text);
-  padding: 20px 0;
-  text-align: center;
-  font-size: 0.9rem;
-}
-
-footer a {
-  color: var(--secondary-color);
-  text-decoration: none;
-}
-
-footer a:hover {
-  text-decoration: underline;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  header nav ul {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .hero h1 {
-    font-size: 2rem;
-  }
-
-  .section {
-    padding: 40px 10px;
-  }
-
-  .card {
-    margin: 10px;
-  }
-}
-
-
-/* Playful Animations */
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
-}
-
-/* Header Interactive Nav */
-header nav ul li a:hover {
-  background: var(--secondary-color);
-  color: var(--text-color);
-  animation: bounce 0.5s ease;
-}
-
-/* Buttons */
-.btn-primary {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.btn-primary:hover {
   transform: scale(1.05);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-  animation: pulse 0.6s infinite;
-}
-
-/* Cards with Playful Interaction */
-.card {
-  transition: transform 0.4s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-  transform: rotate(2deg) scale(1.05);
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
-}
-
-/* Social Icons */
-.social-links a {
-  display: inline-block;
-  transition: transform 0.3s ease;
-}
-
-.social-links a:hover {
-  color: var(--secondary-color);
-  transform: rotate(-10deg) scale(1.2);
-  animation: bounce 0.5s ease;
 }
 
 /* Scroll Reveal Effect */
@@ -257,5 +184,34 @@ header nav ul li a:hover {
   transform: translateY(0);
 }
 
+/* Cards */
+.card {
+  background: var(--light-text);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.4s ease, box-shadow 0.3s ease;
+}
 
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
 
+/* Footer */
+footer {
+  background: var(--primary-color);
+  color: var(--light-text);
+  padding: 20px 0;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: var(--secondary-color);
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
